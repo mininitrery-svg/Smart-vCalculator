@@ -1,0 +1,95 @@
+# Calculadora Inteligente
+# Desenvolvido por [Lueji Lucas]
+
+import math
+
+# Lista para armazenar resultados anteriores
+historico = []
+
+def adicionar(a, b):
+    return a + b
+
+def subtrair(a, b):
+    return a - b
+
+def multiplicar(a, b):
+    return a * b
+
+def dividir(a, b):
+    if b != 0:
+        return a / b
+    else:
+        return "Erro: divisão por zero!"
+
+def potencia(a, b):
+    return a ** b
+
+def raiz(a):
+    if a >= 0:
+        return math.sqrt(a)
+    else:
+        return "Erro: número negativo!"
+
+def porcentagem(a, b):
+    return (a * b) / 100
+
+def mostrar_historico():
+    if historico:
+        print("Resultados anteriores:")
+        for i, resultado in enumerate(historico, 1):
+            print(f"{i}: {resultado}")
+    else:
+        print("Nenhum resultado ainda.")
+
+def calculadora():
+    while True:
+        print("\n=== Calculadora Inteligente ===")
+        print("Operações disponíveis:")
+        print("1. Adição (+)")
+        print("2. Subtração (-)")
+        print("3. Multiplicação (*)")
+        print("4. Divisão (/)")
+        print("5. Potência (^)")
+        print("6. Raiz Quadrada (√)")
+        print("7. Porcentagem (%)")
+        print("8. Mostrar histórico")
+        print("9. Sair")
+
+        opcao = input("Escolha uma opção: ")
+
+        if opcao == "9":
+            print("Saindo da calculadora...")
+            break
+        elif opcao == "8":
+            mostrar_historico()
+            continue
+
+        # Para operações que precisam de 1 número
+        if opcao == "6":
+            num = float(input("Digite o número: "))
+            resultado = raiz(num)
+        else:
+            num1 = float(input("Digite o primeiro número: "))
+            num2 = float(input("Digite o segundo número: "))
+
+            if opcao == "1":
+                resultado = adicionar(num1, num2)
+            elif opcao == "2":
+                resultado = subtrair(num1, num2)
+            elif opcao == "3":
+                resultado = multiplicar(num1, num2)
+            elif opcao == "4":
+                resultado = dividir(num1, num2)
+            elif opcao == "5":
+                resultado = potencia(num1, num2)
+            elif opcao == "7":
+                resultado = porcentagem(num1, num2)
+            else:
+                print("Opção inválida!")
+                continue
+
+        print(f"Resultado: {resultado}")
+        historico.append(resultado)
+
+# Rodar a calculadora
+calculadora()
